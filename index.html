@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Shadows+Into+Light&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+
+
+    <div class="card">
+        <img src="basketball.png" alt="">
+        <div class="backface">
+            <h1>checkout this dude</h1>
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path
+                    d="M5.5605 20.5605L18 8.121V13.5C18 14.328 18.672 15 19.5 15C20.328 15 21 14.328 21 13.5V4.5C21 3.894 20.634 3.3465 20.0745 3.114C19.8885 3.0375 19.6935 3 19.5 3V2.9985H10.5C9.672 2.9985 9 3.6705 9 4.4985C9 5.3265 9.672 5.9985 10.5 5.9985H15.879L3.4395 18.438C3.147 18.7305 3 19.1145 3 19.4985C3 19.8825 3.147 20.2665 3.4395 20.559C4.0245 21.1455 4.9755 21.1455 5.5605 20.559V20.5605Z"
+                    fill="black" />
+            </svg>
+        </div>
+    </div>
+
+    <p>hover this dude</p>
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+    <script>
+        const img = document.querySelector('img')
+        const backface = document.querySelector('.backface')
+        const card = document.querySelector('.card')
+        const p = document.querySelector('p')
+        const svg = document.querySelector('svg')
+        const tl = gsap.timeline({ defaults: { duration: .5, ease: 'power4.inOut' } })
+
+        tl.to(card, {
+            scale: 1.05
+        })
+            .to(p, {
+                yPercent: 20
+            }, '<')
+            .to(backface, {
+                transform: 'scaleX(100%) scaleY(100%)',
+                opacity: 1
+            }, '<')
+            .to(img, {
+                opacity: 0
+            }, '<')
+            .to(svg, {
+                rotate: '0deg',
+                delay: .05
+            }, '<')
+        tl.pause()
+        card.addEventListener('mouseenter', () => {
+            tl.play()
+        })
+        card.addEventListener('mouseleave', () => {
+            tl.reverse()
+        })
+    </script>
+</body>
+
+</html>
